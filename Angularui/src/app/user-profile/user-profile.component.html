@@ -1,0 +1,103 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+         
+          <div class="col-md-4">
+              <div class="card card-profile">
+                  <div class="card-avatar imgbag">
+                      <a href="javascript:void(0)">
+                          <img class="img imgset" src="./assets/img/faces/marc.png" />
+                      </a>
+                  </div>
+                  <div class="card-body">
+                      <h6 class="card-category text-gray dpamountfinal">SALE</h6>
+                      <h4 class="card-title dpamount">{{FinalAmount}}/-</h4>
+                      <p class="card-description contrct">
+                         Last month advance : {{lastmantamount}}
+            
+                      </p>
+                      <p class="card-description contrct">
+                        next month pay : {{NextmntAmount}}
+           
+                     </p>
+                      <a  class="btn btn-danger btn-round"  (click) = "getcurrentmnthbudget()">REFRESH</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-profile">
+                <div class="card-avatar imgbag">
+                    <a href="javascript:void(0)">
+                        <img class="img imgset" src="./assets/img/faces/marc.png" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-category text-gray dpamountfinal">SALE</h6>
+                    <h4 class="card-title dpamount">{{FinalAmount}}/-</h4>
+                    <p class="card-description contrct">
+                       Last month advance : {{lastmantamount}}
+          
+                    </p>
+                    <p class="card-description contrct">
+                      next month pay : {{NextmntAmount}}
+         
+                   </p>
+                    <a  class="btn btn-danger btn-round"  (click) = "getcurrentmnthbudget()">REFRESH</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card">
+              <div class="card-header card-header-success">
+                  <h4 class="card-title">Room Stats</h4>
+                  <p class="card-category">Check in details for Rooms </p>
+              </div>
+              <div class="card-body table-responsive" style="
+              max-height: fit-content;
+              height: 30rem;
+              overflow: auto;
+          ">
+                  <table class="table table-hover">
+
+                
+                      <thead class="text-success">
+                          <th>ID</th>
+                          <th>Booking Number</th>
+                          <th>Room Number</th>
+                          <th>Room Status</th>
+                          <th>Check-in Time</th>
+                          <th>Check-out Time</th>
+                          <th>Advance Amount</th>
+                          <th>Amount Type</th>
+                          <th>Paid Amount</th>
+                          <th>Amount Type</th>
+                         
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let budgetdetailsDTO of budgetdetailsDTO "  >
+                         
+                              <td>1 </td>
+                              <td>{{budgetdetailsDTO.bookingid}}</td>
+                              <td > {{budgetdetailsDTO.roomnumber}} </td>
+                              <td>{{budgetdetailsDTO.roomstatus}} </td>
+                              <td >{{budgetdetailsDTO.checkintime}} </td>
+                              <td >{{budgetdetailsDTO.checkouttime}} </td>
+                              <td>{{budgetdetailsDTO.adavnceamount}} </td>
+                              <td>{{budgetdetailsDTO.adavanceamouttype}} </td>
+                              <td>{{budgetdetailsDTO.paidamount}} </td>
+                              <td>{{budgetdetailsDTO.paidamountyoe}} </td>
+                             
+                          </tr>
+                       
+                       
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          </div>
+
+
+      </div>
+  </div>
+</div>

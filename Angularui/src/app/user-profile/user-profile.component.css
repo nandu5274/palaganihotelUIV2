@@ -1,0 +1,59 @@
+.datepad
+{
+
+    padding: 0.30rem;
+    font-weight: 500;
+    font-size: smaller;
+}
+
+
+.dpamount
+{
+
+    background: -webkit-linear-gradient( #66bb6a, #43a047);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-size: xxx-large;
+
+
+    font-weight: 700;
+  
+    padding-left: 11%;
+
+
+
+}
+
+.dpamountfinal
+{
+
+    font-size: large;
+    font-weight: 700;
+}
+
+
+.contrct
+{
+
+    font-weight: 700;
+}
+
+.imgbag
+{
+    bottom: 1rem;
+    width: 80%;
+    /* height: 107%; */
+    padding: 8px;
+
+    background-color: white;
+}
+
+
+.imgset
+{
+    bottom: 1rem;
+    width: 80% !important;
+    /* height: 107%; */
+    padding: 8px;
+
+}

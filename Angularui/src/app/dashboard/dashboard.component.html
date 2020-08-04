@@ -1,0 +1,1837 @@
+<div class="main-content">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#RoomBookingopopmyModal3" (click) = 'openRoomBookingopop3()' >Book A room</button>
+      
+      <button type="button" class="btn btn-info btn-lg"  style="
+      margin-left: 14px;
+    "    data-toggle="modal" data-target="#roomreservation"  >Advance Booking</button>
+      
+
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">AVAILABLE</p>
+                      <h3 class="card-title">
+                          {{cardavailablecount}}
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">CHECK-IN</p>
+                      <h3 class="card-title">{{cardcheckincount}}</h3>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" (click) = "getyetcleanrroms()">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">CLEAN</p>
+                      <h3 class="card-title">{{cardcleancount}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i> Tracked from Github
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="fa fa-twitter"></i>
+                      </div>
+                      <p class="card-category">TOTAL</p>
+                      <h3 class="card-title">{{cardtotalcount}}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div>
+        <div class="card">
+            <div class="card-header card-header-success">
+                <h4 class="card-title">Room Stats</h4>
+                <p class="card-category">Check in details for Rooms </p>
+            </div>
+            <div class="card-body table-responsive" style="
+            max-height: fit-content;
+            height: 30rem;
+            overflow: auto;
+        ">
+                <table class="table table-hover">
+                    <thead class="text-success">
+                        <th>ID</th>
+                        <th>Booking Number</th>
+                        <th>Customer Name</th>
+                        <th>Room Number</th>
+                        <th>Check-in Time</th>
+                        <th>Extrabeds</th>
+                        <th>persons</th>
+                        <th>Amount </th>
+                        <th>Check-out</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let checkinRoomDetails of checkinRoomDetailsResponseDTO "  >
+                       
+                            <td>{{checkinRoomDetails.indexid}}</td>
+                            <td>{{checkinRoomDetails.bookingid}}</td>
+                            <td class="wraptex" >{{checkinRoomDetails.firstname}} {{checkinRoomDetails.lastname}} </td>
+                            <td>{{checkinRoomDetails.roomnumber}} </td>
+                            <td>{{checkinRoomDetails.checkintime}} </td>
+                            <td>{{checkinRoomDetails.extrabeds}} </td>
+                            <td>{{checkinRoomDetails.nofpersons}} </td>
+                            <td>{{checkinRoomDetails.paidamount}} </td>
+                            <td>	<button class="btn btn-success" (click) = 'checkoutconfirmationmodal(checkinRoomDetails)' ><strong>CHECK OUT</strong> </button> </td>
+                        </tr>
+                     
+                     
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+    <div>
+      <div class="card">
+          <div class="card-header card-header-success">
+              <h4 class="card-title">Payment Pendning Rooms</h4>
+              <p class="card-category">payment pending transactions </p>
+          </div>
+          <div class="card-body table-responsive" style="
+          max-height: fit-content;
+          height: 30rem;
+          overflow: auto;
+      ">
+              <table class="table table-hover">
+                  <thead class="text-success">
+                      <th>ID</th>
+                      <th>Booking Number</th>
+                      <th>Customer Name</th>
+                      <th>Room Number</th>
+                      <th>Check-in Time</th>
+                      <th>Check-out Time</th>
+                      <th>Extrabeds</th>
+                      <th>persons</th>
+                      <th>Amount </th>
+                      <th>Check-out</th>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let checkinRoomDetails of paymentPendingRoomDetailsResponseDTO "  >
+                     
+                          <td>{{checkinRoomDetails.indexid}}</td>
+                          <td>{{checkinRoomDetails.bookingid}}</td>
+                          <td class="wraptex" >{{checkinRoomDetails.firstname}} {{checkinRoomDetails.lastname}} </td>
+                          <td>{{checkinRoomDetails.roomnumber}} </td>
+                          <td>{{checkinRoomDetails.checkintime}} </td>
+                          <td>{{checkinRoomDetails.checkouttime}} </td>
+                          <td>{{checkinRoomDetails.extrabeds}} </td>
+                          <td>{{checkinRoomDetails.nofpersons}} </td>
+                          <td>{{checkinRoomDetails.paidamount}} </td>
+                          <td>	<button class="btn btn-success" (click) = 'checkoutconfirmationmodalPaymenthold(checkinRoomDetails)' ><strong>PAY</strong> </button> </td>
+                      </tr>
+                   
+                   
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  
+
+
+
+      
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+   
+    <!-- Trigger the modal with a button -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="RoomBookingopopmyModal" role="dialog" data-backdrop="static" style="
+      overflow: auto;">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+         
+
+
+            <div class="col-md-8" style="
+            MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto; ">
+                <div class="card cardsize" >
+                   
+                    <div class="card-header card-header-danger">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="card-title">ENTER CUSTOMER DETAILS  FOR BOOKING ROOM NO : {{bookingRoomID}}</h4>
+                        <p class="card-category">all field are manitory</p>
+                    </div>
+                    <div class="card-body" style="font-size: initial;">
+                       
+                            <div class="row">
+                                <div class="col-md-5">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Company (disabled)" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Username" [(ngModel)]="username" >
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email address" type="email" [(ngModel)]="emailadress">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Fist Name" type="text" [(ngModel)]="firstname">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Last Name" type="text" [(ngModel)]="lastname" >
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Adress" type="text"  [(ngModel)]="Adress"    >
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="City" type="text"    [(ngModel)]="city"   >
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Country" type="text"    [(ngModel)]="country"    >
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Postal Code" type="text"     [(ngModel)]="postalcode"   >
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Adhar Number" type="text"  [(ngModel)]="adharnumber"     >
+                                    </mat-form-field>
+                                  </div>
+                                 
+                                  <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Mobile Number" type="text"   [(ngModel)]="mobilenumber"   >
+                                    </mat-form-field>
+                                  </div>
+    
+                                  <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Purpose of vist" type="text"   [(ngModel)]="purposeofvist"    >
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input  matInput placeholder="Extra beds" type="number"  [(ngModel)]="extrabeds"     >
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input   matInput placeholder="Number of persons" type="number"  [(ngModel)]="noofpersons"     >
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input  matInput placeholder="Advance amount" type="number"  [(ngModel)]="advanceamount"     >
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-md-4" >
+                                    <div class="dropdown">
+                                      <mat-form-field class="example-full-width">
+                                        <input  matInput placeholder="payment type"  [(ngModel)] =  "advanceamountpamenttype"    >
+                                      </mat-form-field>
+                                      <div class="dropdown-content">
+                                        <a href="#" (click) = "createdropdown('CASH')">CASH</a>
+                                        <a href="#" (click) = "createdropdown('CARD')">CARD</a>
+                                        <a href="#" (click) = "createdropdown('WALLET')">WALLET</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <label>Other Details</label>
+                                  <mat-form-field class="example-full-width">
+                                     <textarea matInput placeholder="please fill other manditary details ."  [(ngModel)]="manditaryfields" ></textarea>
+                                   </mat-form-field>
+                                    <!-- <div class="form-group">
+    
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                           
+                            <button  mat-raised-button type="submit" class="btn btn-danger pull-right"  (click) = "roomBookingsavecall()"   [disabled] = "disblwhenservicecallforroombookbtn"  >
+                                <i *ngIf= "spinningwheelforbookroombtn" class="fa fa-spinner fa-spin"> </i>
+                             {{bookroombtnname}}</button>
+       
+                            <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+    
+                            <div class="clearfix"></div>
+                     
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+       
+          
+        </div>
+      </div>
+    
+  </div>
+  
+
+
+
+
+
+
+
+  <div class="container">
+   
+    <!-- Trigger the modal with a button -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="RoomBookingopopmyModal2" role="dialog" data-backdrop="static" style="overflow: auto;">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+         
+
+
+            <div class="col-md-8" style="
+            MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto;">
+                <div class="card">
+                   
+                    <div class="card-header card-header-danger">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="card-title">UPLOAD {{CustomerBooikngConfirmname}} DOCUMENTS FOR BOOKING ID : {{bookingConfirmationID}}  </h4>
+                        <p class="card-category">scan & upload csyomers adhar and photocopy</p>
+                    </div>
+                    <div class="card-body" style="font-size: initial;">
+                        <div class="column">
+                            <div class="column is-one-third">
+                              <div class="field">
+                                <div class="file has-name is-primary is-fullwidth">
+                                  <label class="file-label">
+                                      <div>
+                                    <label  for="files" name="file" class="file-input  btn btn-info btn-lg" >
+                                        <i *ngIf= "spinningwheeluploading" class="fa fa-spinner fa-spin"> </i>
+                                        {{uploadAdharButton}}</label>
+                                    <input [disabled] = "! WhileuploadingClick"
+                                      class="file-input "
+                                      id="files"
+                                      type="file"
+                                      name="file" 
+                                      style="visibility:hidden;"
+                                      (click)="fileInput.value = null" 
+                                      #fileInput
+                                      (change)="onChange(fileInput.files[0])"
+                                    />
+                                    
+                                </div>
+
+                                  
+                                    <span class="file-name">
+                                      {{ fileName }}
+                                    </span>
+                                  </label>
+                                </div>
+                              </div>
+                            
+                            </div>
+                            <div class="column">
+                              <figure class="image is-128x128">
+                                <img class="srcsize" [src]="imageUrl" />
+                              </figure>
+                            </div>
+                          </div>
+                          
+
+                          <div class="column">
+                            <div class="column is-one-third">
+                              <div class="field">
+                                <div class="file has-name is-primary is-fullwidth">
+                                  <label class="file-label">
+                                      <div>
+                                      
+                                        <label for="photo" name="file" class="file-input  btn btn-info btn-lg" >
+                                            <i *ngIf= "photospinningwheeluploading" class="fa fa-spinner fa-spin"> </i>
+                                            {{uploadphotobuttonname}}</label>
+                                       
+                                        <input [disabled] = "! WhilephotouploadingClick" name="file" id = "photo" style="visibility:hidden;" type="file" (click)="fileInput.value = null"  (change)="fileChange($event)"/>
+                     
+                                </div>
+
+                                   
+                                    <span class="file-name">
+                                      {{ passportphotofileName }}
+                                    </span>
+                                  </label>
+                                </div>
+                              </div>
+                            
+                            </div>
+                            <div class="column">
+                              <figure class="image is-128x128">
+                                <img class="srcsize" [src]="passportphotoimageUrl" />
+                              </figure>
+                            </div>
+                          </div>
+                          <button   mat-raised-button type="submit" class="btn btn-danger pull-right"  [disabled] = "! documnetonfrimmationflag" (click) = "FinalroomcreatingService()" >
+                            <i *ngIf= "FinalroomBookingspiingwheel" class="fa fa-spinner fa-spin"> </i> 
+                            complete</button>
+       
+                          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+
+                          <div class="w3-light-grey">
+                            <div class="w3-green" style="height:24px;" [ngStyle]="{'width':progresspercentage }"></div>
+                          </div><br>
+                            <div class="clearfix"></div>
+                     
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+       
+          
+        </div>
+      </div>
+    
+  </div>
+
+
+
+
+
+  <div class="container">
+   
+    <!-- Trigger the modal with a button -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="RoomBookingopopmyModal3" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+         
+
+
+            <div class="col-md-8 roomavilableblockcss" >
+                <div class="card">
+                   
+                    <div class="card-header card-header-danger">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="card-title">HOTEL PALAGANI ROOMS</h4>
+                        <p class="card-category">Select only rooms which are available</p>
+                    </div>
+                    <div *ngIf = "! gettingRoomsloading"  class="card-body" >
+                       
+
+                        <div class="row">
+                            
+<div *ngFor="let RoomDetailsRequestDto of RoomDetailsRequestDtoList "  >
+                            <div class="col-lg-3 col-md-6 col-sm-6 fieldsize " [ngStyle]="{'opacity':RoomDetailsRequestDto.opc }"  >
+          
+                                <div class="card card-stats"    [ngStyle]="{'cursor':RoomDetailsRequestDto.cursorvalue }"    attr.data-dismiss= "{{RoomDetailsRequestDto.closetag}}" (click) = "opencustomerbooking(RoomDetailsRequestDto)">
+                                   
+                                    <div class="card-header {{RoomDetailsRequestDto.css}} card-header-icon" >
+                                        <div class="card-icon">
+                                            <i class="material-icons">store</i>
+                                        </div>
+                                        <p class="card-category">Room NO</p>
+                                        <h3 class="card-title">{{RoomDetailsRequestDto.roomnumber}}
+                                          
+                                        </h3>
+                                        <p class="card-category">{{RoomDetailsRequestDto.roomtype}}</p>
+                                      
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats roomstatusname">
+                                            
+                                            <a [ngStyle]="{'color':RoomDetailsRequestDto.roomstatusnamecolorcss }">{{RoomDetailsRequestDto.roomstatusmodname}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        </div>
+
+
+                        
+
+
+                        
+
+                    </div>
+
+
+
+
+
+                    <div *ngIf = "gettingRoomsloading" class="row loadingcenter">
+                            
+                        <div >
+                            <h2 class="animate">GETTING ROOMS ....</h2>
+                                                </div>
+
+                                                </div>
+
+                                       
+                </div>
+
+
+            </div>
+
+
+       
+          
+        </div>
+      </div>
+    
+  </div>
+  
+
+
+
+
+
+
+
+
+
+<!-- Modal HTML -->
+<div id="RoomBookingopopmyModalFinalOrdeCOnfirmation" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons" >&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+                <h4>Great!</h4>	
+                <p>Room resarvation for <strong style="
+                    font-size:large;font-weight: bold;">{{CustomerBooikngConfirmname}}</strong> is completed successfully. </p>
+                <p>Please CHECK-IN Room No:<strong style="
+                    font-size:large; font-weight: bold;" >{{bookingRoomID}} </strong> . </p>
+				<button class="btn btn-success" data-dismiss="modal"><span>THANK YOU </span> <i class="material-icons" style="
+                    top: 16px;
+                " >&#xE5C8;</i></button>
+			</div>
+		</div>
+	</div>
+</div>   
+
+
+
+
+
+
+<div class="container" style=" overflow: auto; " >
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="CheckOutPDFmyModal" role="dialog" data-backdrop="static" style=" overflow: auto; " >
+      <div class="modal-dialog"  style=" overflow: auto;  width: fit-content;max-width: fit-content;/* top: 1rem; *//* pointer-events: auto; */">
+      
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto;">
+              <div class="card">
+             
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">INVOICE DETAILS </h4>
+                      <p class="card-category">verify the invoice details </p>
+                  </div>
+                  <div >
+                    <button  mat-raised-button type="submit" class="btn btn-success pull-right" style="left: -15px; " (click) = "paymentconfirmation()" >
+                      <i *ngIf= "spinningwheelforbookroombtn" class="fa fa-spinner fa-spin"> </i>
+                  check out </button>
+                   <div class="col-md-4 " style="
+                   max-width: fit-content;
+               ">
+                    <button  mat-raised-button type="submit" class="btn btn-info pull-right"  data-dismiss="modal" (click) = "editPayment()"  >
+                      <i *ngIf= "spinningwheelforbookroombtn" class="fa fa-spinner fa-spin"> </i>
+                  Edit</button>
+
+                  <button  mat-raised-button type="submit" class="btn btn-info pull-right"  data-dismiss="modal" (click) = "checkoutFinalStepRequestPAymentHold()"  >
+                    <i *ngIf= "spinningwheelforbookroombtn" class="fa fa-spinner fa-spin"> </i>
+                payment pending</button>
+
+                 </div> 
+                 </div>
+              
+
+                  <div class="card-body" style="font-size: initial;">
+                     
+                    <div  style="right: 17rem;width: fit-content;margin: 4px;max-width: fit-content;/* top: 1rem; *//* pointer-events: auto; */"> 
+                      <div id="htmlData" #htmlData>    
+                        <table style=" width: 26cm; margin-left: 15px;
+                        " 
+                       >
+                    <col width=270 style='mso-width-source:userset;mso-width-alt:11520;width:270pt'>
+                    <col width=93 style='mso-width-source:userset;mso-width-alt:3968;width:93pt'>
+                    <col width=66 style='mso-width-source:userset;mso-width-alt:2816;width:66pt'>
+                    <col width=100 style='mso-width-source:userset;mso-width-alt:4266;width:100pt'>
+                    <col width=82 style='mso-width-source:userset;mso-width-alt:3498;width:82pt'>
+                    <col width=90 style='mso-width-source:userset;mso-width-alt:3840;width:90pt'>
+                    <col width=45 style='mso-width-source:userset;mso-width-alt:1920;width:45pt'>
+                    <tr height=27 style='mso-height-source:userset;height:27.0pt'>
+                    
+                    </tr>
+                    <tr height=27 style='mso-height-source:userset;height:27.0pt'>
+                      <td colspan=7 height=27 class=xl131 width=746 style='height:27.0pt;
+                      width:746pt'>CASH BILL</td>
+                     </tr>
+                    <tr height=23 style='mso-height-source:userset;height:23.0pt'>
+                     <td height=23 class=xl68 style='height:23.0pt'>PALAGANI CASTLE</td>
+                     <td></td>
+                     <td class=xl66></td>
+                     <td></td>
+                     <td class=xl66></td>
+                     <td colspan=2 class=xl141>BILL NO: {{invbillno}}</td>
+                   
+                    </tr>
+                    <tr height=26 style='mso-height-source:userset;height:26.0pt'>
+                     <td colspan=2 height=26 class=xl117 width=363 style='height:26.0pt;
+                     width:363pt'>OPP. R.T.C BUS DEPOT, IBRAHIMPATNAM - 501 506</td>
+                     <td colspan=2 style='mso-ignore:colspan'></td>
+                     <td class=xl140></td>
+                     <td class=xl141>DATE : {{invdate}}<span style="mso-spacerun:yes">&nbsp;</span></td>
+                    
+                     <td class=xl70 width=45 style='width:45pt'></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.75pt'>
+                     <td height=18 class=xl71 style='height:18.75pt'>VIJAYAWADA - 521 456<span
+                     style="mso-spacerun:yes">&nbsp;</span></td>
+                     <td colspan=3 style='mso-ignore:colspan'></td>
+                     <td class=xl72></td>
+                     <td class=xl69></td>
+                     <td class=xl70 width=45 style='width:45pt'></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.75pt'>
+                     <td height=18 class=xl72 style='height:18.75pt'>PH: 9951073391</td>
+                     <td colspan=3 style='mso-ignore:colspan'></td>
+                     <td colspan=2 class=xl117 width=172 style='width:172pt'></td>
+                     <td class=xl70 width=45 style='width:45pt'></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 style='height:18.0pt'></td>
+                     <td class=xl65></td>
+                     <td class=xl73></td>
+                     <td colspan=2 style='mso-ignore:colspan'></td>
+                     <td class=xl74></td>
+                     <td class=xl75></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                   
+                     <td colspan=2 class=xl117 width=172 style='width:172pt'>GST NO: HJJSDHFKJ</td>
+                     <td height=18 class=xl71 style='height:18.0pt'></td>
+                     <td class=xl65></td>
+                     <td class=xl76></td>
+                     <td class=xl76></td>
+                     <td class=xl77></td>
+                  
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl71 style='height:18.0pt'></td>
+                     <td class=xl65></td>
+                     <td class=xl73></td>
+                     <td class=xl73></td>
+                     <td class=xl65></td>
+                     <td class=xl75></td>
+                     <td class=xl75></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl78 style='height:18.0pt'>BILL TO</td>
+                     <td class=xl65></td>
+                     <td class=xl65></td>
+                     <td class=xl78 colspan=2 style='mso-ignore:colspan'>ROOM DETAILS</td>
+                     <td class=xl80></td>
+                     <td class=xl81></td>
+                     <td class=xl82></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl83 style='height:18.0pt'>Contact Name : {{invconactname}}</td>
+                     <td class=xl65></td>
+                     <td class=xl65></td>
+                     <td colspan=2 class=xl129>Room No.<span style="mso-spacerun:yes">&nbsp;
+                     </span> {{invroomno}}</td>
+                 
+                    
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl83 style='height:18.0pt'>Address : {{invaddress}}</td>
+                     <td class=xl65></td>
+                     <td class=xl65></td>
+                     <td colspan=2 class=xl129>Check in_DT/TM : {{invcheckintime}}</td>
+                     
+                     <td class=xl86></td>
+                    </tr>
+                    <tr height=15 style='mso-height-source:userset;height:15.75pt'>
+                     <td height=15 class=xl83 style='height:15.75pt'>Contact Phone No: {{invphoneno}}</td>
+                     <td class=xl65></td>
+                     <td class=xl65></td>
+                     <td colspan=2 class=xl83>Check Out_DT/TM :{{invcheckouttime}}</td>
+                     <td class=xl87></td>
+                     <td class=xl88></td>
+                     <td class=xl88></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl83 style='height:18.0pt'>Contact Emailid: {{invemaild}}</td>
+                     <td class=xl89></td>
+                     <td colspan=2 class=xl83></td>
+                     <td class=xl87></td>
+                     <td class=xl83></td>
+                     <td class=xl83></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl83 style='height:18.0pt'></td>
+                     <td class=xl89></td>
+                     <td colspan=2 style='mso-ignore:colspan'></td>
+                     <td class=xl83></td>
+                     <td class=xl83></td>
+                     <td class=xl83></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td colspan=2 height=18 class=xl121 style='height:18.0pt'>DESCRIPTION</td>
+                     <td class=xl90>QTY</td>
+                     <td colspan=2 class=xl90>UNIT PRICE</td>
+                     <td class=xl91>TOTAL</td>
+                     <td class=xl75></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl132 style='height:18.0pt;border-top:none'>Room Rent</td>
+                     <td class=xl133 style='border-top:none'>&nbsp;</td>
+                     <td class=xl92 style='border-left:none'>1</td>
+                     <td colspan=2 class=xl138 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>{{paymentrentamount}}</td>
+                     <td class=xl93 style='border-left:none'>{{paymentrentamount}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl134 style='height:18.0pt;border-top:none'>Extra Person</td>
+                     <td class=xl135 style='border-top:none'>&nbsp;</td>
+                     <td class=xl95 style='border-top:none;border-left:none'>{{extrapersonscount}}</td>
+                     <td colspan=2 class=xl118 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>{{math.round(paymentextrapersonamount*1 / extrapersonscount*1) || 0}}</td>
+                     <td class=xl96 style='border-top:none;border-left:none'>{{paymentextrapersonamount}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl136 style='height:18.0pt;border-top:none'>Luxury Tax</td>
+                     <td class=xl137 style='border-top:none'>&nbsp;</td>
+                     <td class=xl97 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl120 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl98 style='border-top:none;border-left:none'>{{luxurytax}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl134 style='height:18.0pt;border-top:none'>Service Tax</td>
+                     <td class=xl135 style='border-top:none'>&nbsp;</td>
+                     <td class=xl95 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl118 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl96 style='border-top:none;border-left:none'>{{servicetax}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl136 style='height:18.0pt;border-top:none'>Tel Call
+                     Charges</td>
+                     <td class=xl137 style='border-top:none'>&nbsp;</td>
+                     <td class=xl97 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl120 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl98 style='border-top:none;border-left:none'>{{tellcallCharges}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl134 style='height:18.0pt;border-top:none'>Laundry
+                     Charges</td>
+                     <td class=xl135 style='border-top:none'>&nbsp;</td>
+                     <td class=xl95 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl118 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl96 style='border-top:none;border-left:none'>{{LaundryCharges}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl136 style='height:18.0pt;border-top:none'>Room Service</td>
+                     <td class=xl137 style='border-top:none'>&nbsp;</td>
+                     <td class=xl97 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl120 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl98 style='border-top:none;border-left:none'>{{roomServiceChargres}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=18 style='mso-height-source:userset;height:18.0pt'>
+                     <td height=18 class=xl134 style='height:18.0pt;border-top:none'>Other Charges</td>
+                     <td class=xl135 style='border-top:none'>&nbsp;</td>
+                     <td class=xl95 style='border-top:none;border-left:none'>&nbsp;</td>
+                     <td colspan=2 class=xl118 style='border-right:.5pt solid #BFBFBF;border-left:
+                     none'>&nbsp;</td>
+                     <td class=xl96 style='border-top:none;border-left:none'>{{othercharges}}</td>
+                     <td class=xl94></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td height=19 class=xl99 width=270 style='height:19.5pt;border-top:none;
+                     width:270pt'>&nbsp;</td>
+                     <td class=xl100 width=93 style='border-top:none;width:93pt'>&nbsp;</td>
+                     <td class=xl101></td>
+                     <td class=xl101></td>
+                     <td class=xl102>SUBTOTAL</td>
+                     <td class=xl103 align=right style='border-top:none'>{{Totalcharges*1 + paymentadvanceamount*1}}</td>
+                     <td class=xl104></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td colspan=2 rowspan=5 height=95 class=xl124 width=363 style='height:97.5pt;
+                     width:363pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl101></td>
+                     <td class=xl102>DISCOUNT</td>
+                     <td class=xl103 align=right style='border-top:none'>0.00</td>
+                     <td class=xl104></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td height=19 class=xl101 style='height:19.5pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl102>ADVANCE AMOUNT  </td>
+                     <td class=xl103 align=right style='border-top:none'>{{paymentadvanceamount}}</td>
+                     <td class=xl104></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td height=19 class=xl101 style='height:19.5pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl102>CGST + SGST</td>
+                     <td class=xl105 align=right style='border-top:none'>12.00%</td>
+                     <td class=xl106></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td height=19 class=xl101 style='height:19.5pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl102>SGST</td>
+                     <td class=xl103 align=right style='border-top:none'>0.00</td>
+                     <td class=xl104></td>
+                    </tr>
+                    <tr height=19 style='mso-height-source:userset;height:19.5pt'>
+                     <td height=19 class=xl101 style='height:19.5pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl102>CGST</td>
+                     <td class=xl107 align=right style='border-top:none'>0.00</td>
+                     <td class=xl108></td>
+                    </tr>
+                    <tr height=33 style='mso-height-source:userset;height:33.75pt'>
+                     <td colspan=2 height=33 class=xl123 style='height:33.75pt'></td>
+                     <td class=xl101></td>
+                     <td class=xl101></td>
+                     <td class=xl109>Balance Due</td>
+                     <td class=xl110 align=right> {{math.max(0,Totalcharges)}} </td>
+                     <td class=xl111></td>
+                    </tr>
+                    <tr height=9 style='mso-height-source:userset;height:9.75pt'>
+                     <td colspan=6 height=9 class=xl112 style='height:9.75pt'></td>
+                     <td class=xl112></td>
+                    </tr>
+                    <tr height=45 style='height:45.0pt;mso-xlrowspan:3'>
+                     <td height=45 colspan=9 style='height:45.0pt;mso-ignore:colspan'></td>
+                    </tr>
+                    <tr height=21 style='mso-height-source:userset;height:21.0pt'>
+                     <td colspan=6 height=21 class=xl125 style='height:21.0pt'></td>
+                     <td class=xl116></td>
+                    </tr>
+                    <tr height=15 style='mso-height-source:userset;height:15.0pt'>
+                     <td height=15 class=xl127 style='height:15.0pt'>Guest Signature</td>
+                     <td colspan=3 style='mso-ignore:colspan'></td>
+                     <td colspan=2 class=xl128>Receptionist Signature</td>
+                     <td></td>
+                    </tr>
+                    <tr height=30 style='height:30.0pt;mso-xlrowspan:2'>
+                     <td height=30 colspan=9 style='height:30.0pt;mso-ignore:colspan'></td>
+                    </tr>
+                    <tr height=15 style='mso-height-source:userset;height:15.0pt'>
+                     <td height=15 class=xl113 style='height:15.0pt'>Terms &amp; Instructions</td>
+                     <td class=xl112></td>
+                     <td class=xl112></td>
+                     <td class=xl112></td>
+                     <td class=xl112></td>
+                     <td class=xl112></td>
+                     <td class=xl112></td>
+                    </tr>
+                    <tr height=15 style='mso-height-source:userset;height:15.75pt'>
+                     <td colspan=6 height=15 class=xl130 style='height:15.75pt'><font class="font5">.</font><font
+                     class="font6"><span style="mso-spacerun:yes">&nbsp;</span>Please leave room
+                     key at reception</font></td>
+                     <td class=xl114></td>
+                    </tr>
+                    <tr height=15 style='mso-height-source:userset;height:15.75pt'>
+                     <td colspan=6 height=15 class=xl130 style='height:15.75pt'><font class="font5">.
+                     </font><font class="font6">All bills are payable one presentation</font></td>
+                     <td class=xl115></td>
+                    </tr>
+                   </table>
+                      </div>
+                          <div class="clearfix"></div>
+
+                    
+                        </div>   
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+<!-- html div  -->
+
+
+
+<!-- html div  -->
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="checkoutconfirmationmodal" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 checkouconfrimation" >
+         
+            <div class="card">
+              <div class="modal-content"> 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">CHECK OUT CONFIRMATION</h4>
+                      <p class="card-category"></p>
+                  </div>
+                 
+                  
+                   
+                    <div class="modal-body text-center">
+                              <h4>SURE?</h4>	
+                              <p><strong style="
+                                  font-size:large;font-weight: bold;">{{checkoutconfrimationname}}</strong> is going to check out . Room No :
+                                  <strong style="
+                                  font-size:large;font-weight: bold;">{{checkoutconfrimationroom}}</strong>  </p>
+                      <button class="btn btn-success" data-dismiss="modal" (click) = "checkoutpaymnetdetails()" ><span>CHECK-OUT</span> <i class="material-icons" style="
+                                  top: -1px;    left: 5px
+                              " >&#xE5C8;</i></button>
+                    </div>
+                  </div>
+                                     
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="paymentdetailsmodal" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog" style="max-width: fit-content;">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          max-width: fit-content;" >
+         
+            <div class="card">
+              <div class="modal-content"> 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">payment Details</h4>
+                      <p class="card-category"></p>
+                  </div>
+                 
+                  
+                  <div class="card-body table-responsive" style="
+                  max-height: fit-content;
+                  height: 30rem;
+                  overflow: auto;
+              ">
+                      <table class="table table-hover" >  
+                        <thead class="text-success">
+                          <th>Payment detail</th>
+                          <th>Quantity</th> <th></th> <th></th>
+                          <th>Amount</th>
+                      </thead>                      
+                          <tbody>
+                            <tr >
+                             
+                              <td>Advance Amount : </td>
+                              <td>  </td>
+                              <td> </td> <td> </td>
+                              <td>  <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Advance Amount" disabled   [(ngModel)]="paymentadvanceamount"  (change)="changetotalvalue()"    >
+                              </mat-form-field></td>
+                              
+                          </tr>
+                       
+
+
+
+                              <tr >
+                             
+                                  <td>Room Rent : </td>
+                                  <td> 1 </td>
+                                  <td> </td> <td> </td>
+                                  <td>  
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Room Rent" type="text" 
+                                    [(ngModel)]="paymentrentamount"  (change)="changetotalvalue()"    >
+                                  </mat-form-field>
+                                  </td>
+                                  
+                              </tr>
+                           
+
+                              <tr>
+                             
+                                <td>Extra Person : </td>
+                                <td>{{extrapersonscount}}</td> <td style="margin-left: 20px;">   </td> <td> </td>
+                                <td>  <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Extra Person"  type="number"
+                                   min="0.00" max="10000.00" step="1"   [(ngModel)]="paymentextrapersonamount"   (change)="changetotalvalue()"     >
+                                </mat-form-field></td>
+                                
+                            </tr>
+                           
+
+                            <tr>
+                             
+                              <td>Luxury Tax :</td>
+                              <td> </td>
+                              <td> </td> <td> </td>
+                              <td>  <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Luxury Tax" type="number" min="0.00" 
+                                max="10000.00" step="1"    [(ngModel)]="luxurytax"  (change)="changetotalvalue()"    >
+                              </mat-form-field></td>
+                              
+                          </tr>
+
+
+                          <tr>
+                             
+                            <td>Tax : </td>
+                            <td> </td> <td> </td> <td> </td>
+                            <td>  <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Service Tax" type="number" 
+                              min="0.00" max="10000.00" step="1"    [(ngModel)]="servicetax"  (change)="changetotalvalue()"       >
+                            </mat-form-field></td>
+                            
+                        </tr>
+
+
+                        <tr>
+                          
+   
+                          <td>Tel Call Charges </td>
+                          <td> </td> <td> </td> <td> </td>
+                          <td>  <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Tel Call Charges" type="number"
+                             min="0.00" max="10000.00" step="1"  [(ngModel)]="tellcallCharges"  (change)="changetotalvalue()"     >
+                          </mat-form-field></td>
+                          
+                      </tr>
+
+
+                      <tr>
+                             
+                        <td>Laundry Charges </td>
+                        <td> </td> <td> </td> <td> </td>
+                        <td>  <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Laundry Charges" type="number"
+                           min="0.00" max="10000.00" step="1"   [(ngModel)]="LaundryCharges"   (change)="changetotalvalue()"     >
+                        </mat-form-field></td>
+                        
+                    </tr>
+
+                    <tr>
+                             
+                      <td>Room Service </td>
+                      <td> </td> <td> </td> <td> </td>
+                      <td>  <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Room Service"  type="number" 
+                        min="0.00" max="10000.00" step="1"   [(ngModel)]="roomServiceChargres"  (change)="changetotalvalue()"      >
+                      </mat-form-field></td>
+                      
+                  </tr>
+
+
+                   <tr>
+                             
+                      <td>Other Charges	 </td>
+                      <td> </td> <td> </td> <td> </td>
+                      <td>  <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Other Charges	"  type="number" min="0.00"
+                         max="10000.00" step="1"     [(ngModel)]="othercharges"  (change)="changetotalvalue()"    >
+                      </mat-form-field></td>
+                      
+                  </tr>
+
+
+
+             
+
+
+
+                          </tbody>
+                      </table>
+                  </div>
+    
+                  
+                  <button   mat-raised-button type="submit" class="btn btn-success pull-right"  style="
+                  margin: 18px;    font-weight: bold;
+    font-size: x-large;
+    
+              "    (click) = "generatebill()" data-dismiss="modal" >
+                   <a>
+                  
+              
+                    Pay -  {{math.max(0,                       
+                      paymentrentamount *1 +
+                      paymentextrapersonamount *1 +
+                      luxurytax  *1 +
+                      servicetax *1 +
+                      tellcallCharges *1 +
+                      LaundryCharges *1 +
+                      roomServiceChargres * 1
+                      -paymentadvanceamount*1)
+                     }}/-     
+                  
+                     </a>
+                          
+                          </button>
+
+
+
+
+
+                  </div>
+                                     
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="paymentconfirmation" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 checkouconfrimation" >
+         
+            <div class="card">
+              <div class="modal-content"> 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">PAYMENT CONFIRMATION</h4>
+                      <p class="card-category"></p>
+                  </div>
+                 
+                  
+                   
+                    <div class="modal-body text-center">
+                              <h4>SURE?</h4>	
+                              <p> <strong style="
+                                font-size:large;font-weight: bold;">Make sure to select payment method </strong> </p>
+
+                                   <div class="dropdown">
+  <mat-form-field class="example-full-width">
+    <input  matInput placeholder="payment type"  [(ngModel)] =  "advanceamountpamenttype"    >
+  </mat-form-field>
+  <div class="dropdown-content">
+    <a href="#" (click) = "createdropdown('CASH')">CASH</a>
+    <a href="#" (click) = "createdropdown('CARD')">CARD</a>
+    <a href="#" (click) = "createdropdown('WALLET')">WALLET</a>
+  </div>
+                                    </div>
+                                    <p>
+                                    <strong style="
+                                    font-size:smaller;font-weight: bold;">After clicking check-out button . Make sure to give invoice print out to customer </strong></p>
+
+                      <button class="btn btn-success" data-dismiss="modal" (click) = "checkoutFinalStep()" ><span>CHECK-OUT</span> <i class="material-icons" style="
+                                  top: -1px;    left: 5px
+                              " >&#xE5C8;</i></button>
+                    </div>
+                  </div>
+                                     
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+<!-- Modal HTML -->
+<div id="checkoutsucesspopup" class="modal fade">
+	<div class="modal-dialog modal-confirm checkoutcfmalgin">
+		<div class="modal-content" style="
+    max-width: inherit;">
+      <div *ngIf = "checkoutsucessflg">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons" >&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+    </div>
+  <div>
+			<div class="modal-body text-center  ">
+
+        <div *ngIf = "checkoutsucessflg">
+                <h4>Great!</h4>	
+                <p><strong style="
+                    font-size:large;font-weight: bold;">Room CHECK-OUT successfully</strong></p>
+                     <p><strong style="
+                      font-size:smaller;">please collect keys from customer </strong></p>
+                
+				<button class="btn btn-success" data-dismiss="modal"><span>THANK YOU </span> <i class="material-icons" style="
+                    top: 16px;
+                " >&#xE5C8;</i></button>
+      
+    </div>
+    
+    
+    <div *ngIf = "! checkoutsucessflg" class=" loadingcenter">
+          <div style="margin-left: -6rem;max-width: inherit;">
+      <div >
+          <h2 class="animate">Checking out . </h2>
+                              </div>
+
+                              </div>
+                            </div>                  
+    </div>
+
+
+    </div>
+
+		</div>
+	</div>
+</div>   
+
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="cleanrromstatusmodal" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 roomavilableblockcss" >
+              <div class="card">
+                 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">HOTEL PALAGANI ROOMS</h4>
+                      <p class="card-category">cean below rooms</p>
+                  </div>
+                  <div *ngIf = "cleaningroomflg"  class="card-body" >
+                     
+
+                      <div class="row">
+                          
+                  <div *ngFor="let RoomDetailsRequestDto of CleanRoomDetailsResponseDtoList "  >
+                          <div class="col-lg-3 col-md-6 col-sm-6 fieldsize " [ngStyle]="{'opacity':RoomDetailsRequestDto.opc }"  >
+        
+                              <div class="card card-stats"    [ngStyle]="{'cursor':RoomDetailsRequestDto.cursorvalue }"    attr.data-dismiss= "{{RoomDetailsRequestDto.closetag}}" (click) = "makeroomAvailable(RoomDetailsRequestDto)">
+                                 
+                                  <div class="card-header {{RoomDetailsRequestDto.css}} card-header-icon" >
+                                      <div class="card-icon">
+                                          <i class="material-icons">store</i>
+                                      </div>
+                                      <p class="card-category">Room NO</p>
+                                      <h3 class="card-title">{{RoomDetailsRequestDto.roomnumber}}
+                                        
+                                      </h3>
+                                      <p class="card-category">{{RoomDetailsRequestDto.roomtype}}</p>
+                                    
+                                  </div>
+                                  <div class="card-footer">
+                                      <div class="stats roomstatusname">
+                                          
+                                          <a [ngStyle]="{'color':RoomDetailsRequestDto.roomstatusnamecolorcss }">{{RoomDetailsRequestDto.roomstatusmodname}}</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+
+
+                      </div>
+
+
+                      
+
+
+                      
+
+                  </div>
+
+
+
+                  <div *ngIf = "! cleaningroomflg" class="row loadingcenter">
+                
+                  <div class="row loadingcenter">
+                          
+                      <div >
+                          <h2 class="animate">GETTING ROOMS ....</h2>
+                                              </div>
+
+                                              </div>
+
+                   </div>                  
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="Roomcleanconfirmationmodal" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 checkouconfrimation" >
+         
+            <div class="card">
+              <div class="modal-content"> 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">ROOM CLEAN CONFIRMATION</h4>
+                      <p class="card-category"></p>
+                  </div>
+                 
+                  
+                   
+                    <div class="modal-body text-center">
+                              <h4>SURE?</h4>	
+                              <p>MAKE SURE ROOM NO : {{Cleanroomnnumbe}} IS CLEANED PROPERLY </p>
+                      <button class="btn btn-success" data-dismiss="modal" (click) = "makeroomAvailableserviccall()" ><span>MAKE AVAILABLE</span> <i class="material-icons" style="
+                                  top: -1px;    left: 5px
+                              " >&#xE5C8;</i></button>
+                    </div>
+                  </div>
+                                     
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+<div id="cleanousucesspopup" class="modal fade">
+	<div class="modal-dialog modal-confirm checkoutcfmalgin">
+		<div class="modal-content" style="
+    max-width: inherit;">
+      <div *ngIf = "false">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons" >&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+    </div>
+  <div>
+			<div class="modal-body text-center  ">
+
+        <div *ngIf = "makeroomcleanflg">
+                <h4>Great!</h4>	
+                <p><strong style="
+                    font-size:large;font-weight: bold;">Now Room no : {{Cleanroomnnumbe}} is avaialble </strong></p>
+                    
+                
+				<button class="btn btn-success" data-dismiss="modal"><span>THANK YOU </span> <i class="material-icons" style="
+                    top: 16px;
+                " >&#xE5C8;</i></button>
+      
+    </div>
+    
+    
+    <div *ngIf = "! makeroomcleanflg" class=" loadingcenter">
+          <div style="max-width: inherit;">
+      <div >
+          <h2 class="animate"> Making Room Available . </h2>
+                              </div>
+
+                              </div>
+                            </div>                  
+    </div>
+
+
+    </div>
+
+		</div>
+	</div>
+</div>   
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="roomreservation" role="dialog" data-backdrop="static" style="
+    overflow: auto;">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto; ">
+              <div class="card cardsize" >
+                 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">ENTER CUSTOMER DETAILS  FOR BOOKING ROOM NO : {{bookingRoomID}}</h4>
+                      <p class="card-category">all field are manitory</p>
+                  </div>
+                  <div class="card-body" style="font-size: initial;">
+                     
+                    <button type="button" class="btn btn-info btn-lg"  style="
+                    margin-left: 14px;
+                  "    data-toggle="modal"    data-target="#roomreservationdetails"    >Advance Booking</button>
+
+
+
+<div class="card">
+  <div class="card-header card-header-success">
+      <h4 class="card-title">Room Stats</h4>
+      <p class="card-category">Check in details for Rooms </p>
+  </div>
+  <div class="card-body table-responsive" style="
+  max-height: fit-content;
+  height: 10rem;
+  overflow: auto;
+">
+      <table class="table table-hover">
+
+    
+          <thead class="text-success">
+              <th>ID</th>
+              <th>Booking Number</th>
+              <th>Room Number</th>
+              <th>Room Status</th>
+              <th>Check-in Time</th>
+              <th>Check-out Time</th>
+              <th>Advance Amount</th>
+              <th>Amount Type</th>
+              <th>Paid Amount</th>
+              <th>Amount Type</th>
+             
+          </thead>
+          <tbody>
+              <tr *ngFor="let budgetdetailsDTO of budgetdetailsDTO "  >
+             
+                  <td>1 </td>
+                  <td>{{budgetdetailsDTO.bookingid}}</td>
+                  <td > {{budgetdetailsDTO.roomnumber}} </td>
+                  <td>{{budgetdetailsDTO.roomstatus}} </td>
+                  <td >{{budgetdetailsDTO.checkintime}} </td>
+                  <td >{{budgetdetailsDTO.checkouttime}} </td>
+                  <td>{{budgetdetailsDTO.adavnceamount}} </td>
+                  <td>{{budgetdetailsDTO.adavanceamouttype}} </td>
+                  <td>{{budgetdetailsDTO.paidamount}} </td>
+                  <td>{{budgetdetailsDTO.paidamountyoe}} </td>
+                 
+              </tr>
+           
+           
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+                    
+                   
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="roomreservationdetails" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog" style="max-width: fit-content;">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          max-width: fit-content;" >
+         
+            <div class="card">
+              <div class="modal-content"> 
+                  <div class="card-header card-header-danger">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">payment Details</h4>
+                      <p class="card-category"></p>
+                  </div>
+                 
+                  
+                  <div class="card-body table-responsive" style="
+                  max-height: fit-content;
+                  height: 30rem;
+                  overflow: auto;
+              ">
+                      <table class="table table-hover" >  
+                        <thead class="text-success">
+                          <th>Payment detail</th>
+                          <th>Quantity</th> <th></th> <th></th>
+                          <th>Amount</th>
+                      </thead>                      
+                          <tbody>
+                            <tr >
+                             
+                              <td>Advance Amount : </td>
+                              <td>  </td>
+                              <td> </td> <td> </td>
+                              <td>  <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Advance Amount" disabled   [(ngModel)]="paymentadvanceamount"  (change)="changetotalvalue()"    >
+                              </mat-form-field></td>
+                              
+                          </tr>
+                       
+
+
+
+                              <tr >
+                             
+                                  <td>Room Rent : </td>
+                                  <td> 1 </td>
+                                  <td> </td> <td> </td>
+                                  <td>  
+                                    <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Room Rent" type="text" 
+                                    [(ngModel)]="paymentrentamount"  (change)="changetotalvalue()"    >
+                                  </mat-form-field>
+                                  </td>
+                                  
+                              </tr>
+                           
+
+                              <tr>
+                             
+                                <td>Extra Person : </td>
+                                <td>{{extrapersonscount}}</td> <td style="margin-left: 20px;">   </td> <td> </td>
+                                <td>  <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Extra Person"  type="number"
+                                   min="0.00" max="10000.00" step="1"   [(ngModel)]="paymentextrapersonamount"   (change)="changetotalvalue()"     >
+                                </mat-form-field></td>
+                                
+                            </tr>
+                           
+
+                            <tr>
+                             
+                              <td>Luxury Tax :</td>
+                              <td> </td>
+                              <td> </td> <td> </td>
+                              <td>  <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Luxury Tax" type="number" min="0.00" 
+                                max="10000.00" step="1"    [(ngModel)]="luxurytax"  (change)="changetotalvalue()"    >
+                              </mat-form-field></td>
+                              
+                          </tr>
+
+
+                          <tr>
+                             
+                            <td>Tax : </td>
+                            <td> </td> <td> </td> <td> </td>
+                            <td>  <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Service Tax" type="number" 
+                              min="0.00" max="10000.00" step="1"    [(ngModel)]="servicetax"  (change)="changetotalvalue()"       >
+                            </mat-form-field></td>
+                            
+                        </tr>
+
+
+                        <tr>
+                          
+   
+                          <td>Tel Call Charges </td>
+                          <td> </td> <td> </td> <td> </td>
+                          <td>  <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Tel Call Charges" type="number"
+                             min="0.00" max="10000.00" step="1"  [(ngModel)]="tellcallCharges"  (change)="changetotalvalue()"     >
+                          </mat-form-field></td>
+                          
+                      </tr>
+
+
+                      <tr>
+                             
+                        <td>Laundry Charges </td>
+                        <td> </td> <td> </td> <td> </td>
+                        <td>  <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Laundry Charges" type="number"
+                           min="0.00" max="10000.00" step="1"   [(ngModel)]="LaundryCharges"   (change)="changetotalvalue()"     >
+                        </mat-form-field></td>
+                        
+                    </tr>
+
+                    <tr>
+                             
+                      <td>Room Service </td>
+                      <td> </td> <td> </td> <td> </td>
+                      <td>  <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Room Service"  type="number" 
+                        min="0.00" max="10000.00" step="1"   [(ngModel)]="roomServiceChargres"  (change)="changetotalvalue()"      >
+                      </mat-form-field></td>
+                      
+                  </tr>
+
+
+                   <tr>
+                             
+                      <td>Other Charges	 </td>
+                      <td> </td> <td> </td> <td> </td>
+                      <td>  <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Other Charges	"  type="number" min="0.00"
+                         max="10000.00" step="1"     [(ngModel)]="othercharges"  (change)="changetotalvalue()"    >
+                      </mat-form-field></td>
+                      
+                  </tr>
+
+
+
+             
+
+
+
+                          </tbody>
+                      </table>
+                  </div>
+    
+                  
+                  <button   mat-raised-button type="submit" class="btn btn-success pull-right"  style="
+                  margin: 18px;    font-weight: bold;
+    font-size: x-large;
+    
+              "    (click) = "generatebill()" data-dismiss="modal" >
+                   <a>
+                  
+              
+                    Pay -  {{math.max(0,                       
+                      paymentrentamount *1 +
+                      paymentextrapersonamount *1 +
+                      luxurytax  *1 +
+                      servicetax *1 +
+                      tellcallCharges *1 +
+                      LaundryCharges *1 +
+                      roomServiceChargres * 1
+                      -paymentadvanceamount*1)
+                     }}/-     
+                  
+                     </a>
+                          
+                          </button>
+
+
+
+
+
+                  </div>
+                                     
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
