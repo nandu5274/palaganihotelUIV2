@@ -44,6 +44,9 @@ export class DashboardService {
     return this.http.get(uri,args).map((res: Response) => res);
   }
 
+  public getAllAdvanceBookingDetails(uri: string, args?: RequestOptionsArgs) {
+    return this.http.get(uri,args).map((res: Response) => res);
+  }
 
 
 }

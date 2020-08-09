@@ -5,16 +5,17 @@ import{DashboardService} from './dashboard.service';
 import {Observable} from 'rxjs/Observable';
 import { delay } from 'rxjs/operators';
 import {RoomBookingDto} from '../dtos/roomBookingDto';
+import{getadvanceBookingDetailsDTO} from '../dtos/getadvanceBookingDetailsDTO'
 import {RoomDetailsDTO} from '../dtos/roomDetailsDTO';
 import {RoomstatsDTO} from '../dtos/RoomstatsDTO';
 import {InvoiceResponseDTO} from '../dtos/invoiceResponseDTO';
 import {checkoutReqDTO} from '../dtos/checkoutReqDTO';
-
+import{adavnceBookingRequestDTO} from '../dtos/adavnceBookingRequestDTO';
 import {paymentHoldDetailsResponseDTO} from '../dtos/paymentHoldDetailsResponseDTO';
 import {checkinRoomDetailsResponseDTO} from '../dtos/checkinRoomDetailsResponseDTO';
 import {Urlsconstnats} from '../common/app.urls';
 import { DatePipe } from '@angular/common';
-import { localizedString } from '@angular/compiler/src/output/output_ast';
+import { localizedString, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { ViewChild, ElementRef } from '@angular/core';
 import * as jsPDF from 'jspdf'
 import html2canvas from 'html2canvas';
@@ -52,6 +53,9 @@ export class DashboardComponent implements OnInit {
   type:any;
   count:any;
   myDate:any;
+
+
+
   roomBookingDtoRequest : RoomBookingDto;
   RoomDetailsRequestDto  : RoomDetailsDTO;
   FinalroomBookingDtoRequest :RoomBookingDto;
@@ -66,6 +70,10 @@ export class DashboardComponent implements OnInit {
   checkinRoomDetailsResponseDTO: checkinRoomDetailsResponseDTO
   paymentPendingRoomDetailsResponseDTO: paymentHoldDetailsResponseDTO
   checkoutconfrimation:checkinRoomDetailsResponseDTO;
+  adavnceBookingRequestDTO : adavnceBookingRequestDTO;
+  getadvanceBookingDetailsDTO : getadvanceBookingDetailsDTO;
+  editgetadvanceBookingDetailsDTO : getadvanceBookingDetailsDTO;
+  editgetadvanceBookingDetailsDTOService : getadvanceBookingDetailsDTO;
   checkoutconfrimationname:any;
   checkoutconfrimationroom:any;
   checkoutsucessflg:boolean = false;
@@ -167,9 +175,39 @@ invcheckouttime:any;
 
 
 
+///advancebooking variables ///
+
+advancecustomername: any = "";
+advancecheckindate: any = "";
+advancenoofperosons: any = 0;
+advancenoofrooms: any = 0;
+advanceadavanceamout:  any = 0;
+advancemobilenumber: any = 0;
+advancepurposeofvist:  any=  "";
+advancepaymenttype: any =  "";
+creatAvancebookingspin:boolean=false;
+
+///edit variables ////
+
+editadvancecustomername: any = "";
+editadvancecheckindate: any = "";
+editadvancenoofperosons: any = 0;
+editadvancenoofrooms: any = 0;
+editadvanceadavanceamout:  any = 0;
+editadvancemobilenumber: any = 0;
+editadvancepurposeofvist:  any=  "";
+editadvancepaymenttype: any =  "";
+editadvanceremaingamount:any=  0;
+editadvancereturnamount:any=  0;
+editadvancebookingstatus:any=  "";
+editadvancebookingids:any=  "";
+
+
+///edit variables ////
 
 
 
+///advancebooking variables ///
 
 
 
@@ -251,9 +289,13 @@ invcheckouttime:any;
       this.urlsconstnats = new Urlsconstnats();
       this.checkoutReqDTO = new checkoutReqDTO();
       this.paymentPendingRoomDetailsResponseDTO = new  paymentHoldDetailsResponseDTO();
-   
+      this.editgetadvanceBookingDetailsDTO = new getadvanceBookingDetailsDTO();
+   this.adavnceBookingRequestDTO = new adavnceBookingRequestDTO();
+   this.getadvanceBookingDetailsDTO = new getadvanceBookingDetailsDTO();
+   this.editgetadvanceBookingDetailsDTOService = new getadvanceBookingDetailsDTO();
       this.getallcheckinrecords();
       this.getallPaymentPendingcrecords();
+      this.getAadvanceBookingDetails();
       this.roomstatusdetails();    
       this.createdropdwonbtnname  = 'Payment type'
   }
@@ -391,10 +433,23 @@ async testdelay()   {
   createdropdown(data:any)
   {
     this.advanceamountpamenttype = data;
-  this.createdropdwonbtnname = data;
+
     console.log( this.advanceamountpamenttype);
   }
 
+
+  AdvanceBookingdropdown(data:any)
+  {
+    this.advancepaymenttype = data;
+    console.log( this.advanceamountpamenttype);
+  }
+
+
+  editAdvanceBookingdropdown(data:any)
+  {
+    this.editadvancebookingstatus = data;
+    console.log( this.editadvancebookingstatus);
+  }
 
   UploadAdharFileToDropBox (data:any,filename:any)
   {
@@ -1307,6 +1362,172 @@ if(Number(this.cardcleancount) > 0)
  this.roomstatusdetails();
 this.makeroomcleanflg = true;
 
+
+    }
+
+
+
+
+
+    clearaadvanceBooking()
+    {
+
+      this.advancecustomername = "";
+      this.advancecheckindate= "";
+      this.advancenoofperosons= 0;
+      this.advancenoofrooms= 0;
+      this.advanceadavanceamout =0;
+      this.advancemobilenumber= 0;
+      this.advancepurposeofvist= "";
+      this.advancepaymenttype= "";
+
+    }
+
+    creteaadvanceBooking()
+    {
+
+      $("#advancebookingconfrimationmodal").modal('show');
+      this.creatAvancebookingspin = true;
+      this.adavnceBookingRequestDTO = new adavnceBookingRequestDTO();
+
+      this.adavnceBookingRequestDTO.advancecustomername =  this.advancecustomername;
+      this.adavnceBookingRequestDTO.advancecheckindate = this.advancecheckindate;
+      this.adavnceBookingRequestDTO.advancenoofperosons = this.advancenoofperosons;
+      this.adavnceBookingRequestDTO.advancenoofrooms = this.advancenoofrooms;
+      this.adavnceBookingRequestDTO.advanceadavanceamout = this.advanceadavanceamout;
+      this.adavnceBookingRequestDTO.advancemobilenumber = this.advancemobilenumber;
+      this.adavnceBookingRequestDTO.advancepurposeofvist = this.advancepurposeofvist;
+      this.adavnceBookingRequestDTO.advancepaymenttype = this.advancepaymenttype;
+
+
+  
+
+        let headers = new Headers();
+    
+        let requestOptions = new RequestOptions({ headers: headers });
+          headers.append('Content-Type', 'application/json');
+          this.DashboardService.saveRoomBooking( this.urlsconstnats.url + "/createadvancebooking",this.adavnceBookingRequestDTO ,requestOptions).subscribe(
+    (data)  => {
+      //sucess
+     console.log(data);
+     this.createadvancebookingsucess(data);
+    },
+      error => {
+        this.paymentholdpayfalg = false;
+    });
+    
+  
+
+    }
+
+    getAadvanceBookingDetails()
+    {
+
+
+      let headers = new Headers();
+    
+      let requestOptions = new RequestOptions({ headers: headers });
+        headers.append('Content-Type', 'application/json');
+        this.DashboardService.getAllAdvanceBookingDetails( this.urlsconstnats.url + "/getpendingadvancebokingdetails" ,requestOptions).subscribe(
+  (data)  => {
+    //sucess
+    this.getAadvanceBookingDetailsSucess(data);
+   console.log(data);
+  },
+    error => {
+      this.paymentholdpayfalg = false;
+  });
+  
+
+
+    }
+
+    createadvancebookingsucess(data:any)
+    {
+     
+  
+     
+      this.getAadvanceBookingDetails();
+      this.creatAvancebookingspin = false;
+   
+      this.clearaadvanceBooking();
+    }
+
+
+
+
+    getAadvanceBookingDetailsSucess(data :any)
+    {
+      this.getadvanceBookingDetailsDTO = data;
+      $("#editadvancebookingconfrimationmodal").modal('hide');
+      $("#advancebookingconfrimationmodal").modal('hide');
+    }
+    
+    
+    
+    openeditadvancebookingmodal(data:any)
+    {
+      $("#editadvancebookingdeatils").modal('show');
+      this.editgetadvanceBookingDetailsDTO = data;
+
+  
+      this.editadvancecustomername =  this.editgetadvanceBookingDetailsDTO.customerName;
+      this.editadvancecheckindate =  this.editgetadvanceBookingDetailsDTO.checkinDate;
+      this.editadvancenoofperosons = this.editgetadvanceBookingDetailsDTO.numberOfPersons;
+      this.editadvancenoofrooms = this.editgetadvanceBookingDetailsDTO.numberOfRooms;
+      this.editadvanceadavanceamout = this.editgetadvanceBookingDetailsDTO.advanceAmount;
+      this.editadvancemobilenumber = this.editgetadvanceBookingDetailsDTO.mobileNumber;
+      this.editadvancepurposeofvist=  this.editgetadvanceBookingDetailsDTO.purposeofvist;
+      this.editadvancebookingids = this.editgetadvanceBookingDetailsDTO.bookingIds;
+      this.editadvanceremaingamount =  this.editgetadvanceBookingDetailsDTO.remainingAmount;
+      this.editadvancereturnamount =  this.editgetadvanceBookingDetailsDTO.returnedAmount
+      this.editadvancebookingstatus =  this.editgetadvanceBookingDetailsDTO.status;
+      this.editAdvanceBookingdropdown(this.editadvancebookingstatus);
+
+    }
+
+    editadvancebookingmodalService()
+    {
+      
+      $("#editadvancebookingconfrimationmodal").modal('show');
+
+      this.editgetadvanceBookingDetailsDTOService.customerName =  this.editadvancecustomername ;
+      this.editgetadvanceBookingDetailsDTOService.checkinDate = this.editadvancecheckindate;
+      this.editgetadvanceBookingDetailsDTOService.numberOfPersons =  this.editadvancenoofperosons ;
+      this.editgetadvanceBookingDetailsDTOService.numberOfRooms = this.editadvancenoofrooms;
+      this.editgetadvanceBookingDetailsDTOService.advanceAmount = this.editadvanceadavanceamout ;
+      this.editgetadvanceBookingDetailsDTOService.mobileNumber = this.editadvancemobilenumber;
+      this.editgetadvanceBookingDetailsDTOService.purposeofvist = this.editadvancepurposeofvist;
+      this.editgetadvanceBookingDetailsDTOService.bookingIds = this.editadvancebookingids;
+      this.editgetadvanceBookingDetailsDTOService.remainingAmount = this.editadvanceremaingamount;
+      this.editgetadvanceBookingDetailsDTOService.returnedAmount = this.editadvancereturnamount;
+      this.editgetadvanceBookingDetailsDTOService.status = this.editadvancebookingstatus;
+      
+      this.editgetadvanceBookingDetailsDTOService.id =  this.editgetadvanceBookingDetailsDTO.id;
+
+
+
+      let headers = new Headers();
+    
+      let requestOptions = new RequestOptions({ headers: headers });
+        headers.append('Content-Type', 'application/json');
+        this.DashboardService.saveRoomBooking( this.urlsconstnats.url + "/editeadvancebooking" ,this.editgetadvanceBookingDetailsDTOService,requestOptions).subscribe(
+  (data)  => {
+    //sucess
+    this.editadvancebookingmodalSuccess();
+  },
+    error => {
+      this.paymentholdpayfalg = false;
+  });
+  
+
+    }
+
+    editadvancebookingmodalSuccess()
+    {
+      
+    
+      this.getAadvanceBookingDetails();
 
     }
 

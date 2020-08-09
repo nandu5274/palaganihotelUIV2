@@ -1032,6 +1032,13 @@
 
 
 
+
+
+
+
+
+
+
 <div class="container">
    
   <!-- Trigger the modal with a button -->
@@ -1549,7 +1556,7 @@
 
           <div class="col-md-8" style="
           MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto; ">
-              <div class="card cardsize" >
+              <div class="card cardsize2" >
                  
                   <div class="card-header card-header-danger">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1560,7 +1567,7 @@
                      
                     <button type="button" class="btn btn-info btn-lg"  style="
                     margin-left: 14px;
-                  "    data-toggle="modal"    data-target="#roomreservationdetails"    >Advance Booking</button>
+                  "    data-toggle="modal"    data-target="#advancebookingdeatils"    >Advance Booking</button>
 
 
 
@@ -1571,39 +1578,39 @@
   </div>
   <div class="card-body table-responsive" style="
   max-height: fit-content;
-  height: 10rem;
+  height: 15rem;
   overflow: auto;
 ">
       <table class="table table-hover">
 
     
           <thead class="text-success">
-              <th>ID</th>
-              <th>Booking Number</th>
-              <th>Room Number</th>
-              <th>Room Status</th>
-              <th>Check-in Time</th>
-              <th>Check-out Time</th>
+              <th>S.No</th>
+              <th>Customer Name</th>
+              <th>Status</th>
+              <th>Check-In Date</th>
               <th>Advance Amount</th>
-              <th>Amount Type</th>
-              <th>Paid Amount</th>
-              <th>Amount Type</th>
-             
+              <th>Remaing Amount</th>
+              <th>Return Amount</th>
+              <th>Mobile Number</th>
+              <th>Bookingids</th>
+              <th>created Date</th>
+              <th>Edit</th>
           </thead>
           <tbody>
-              <tr *ngFor="let budgetdetailsDTO of budgetdetailsDTO "  >
+              <tr *ngFor="let getadvanceBookingDetailsDTO of getadvanceBookingDetailsDTO ; index as i "  >
              
-                  <td>1 </td>
-                  <td>{{budgetdetailsDTO.bookingid}}</td>
-                  <td > {{budgetdetailsDTO.roomnumber}} </td>
-                  <td>{{budgetdetailsDTO.roomstatus}} </td>
-                  <td >{{budgetdetailsDTO.checkintime}} </td>
-                  <td >{{budgetdetailsDTO.checkouttime}} </td>
-                  <td>{{budgetdetailsDTO.adavnceamount}} </td>
-                  <td>{{budgetdetailsDTO.adavanceamouttype}} </td>
-                  <td>{{budgetdetailsDTO.paidamount}} </td>
-                  <td>{{budgetdetailsDTO.paidamountyoe}} </td>
-                 
+                  <td>{{i+1}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.customerName}}</td>
+                  <td > {{getadvanceBookingDetailsDTO.status}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.checkinDate}} </td>
+                  <td >{{getadvanceBookingDetailsDTO.advanceAmount}} </td>
+                  <td >{{getadvanceBookingDetailsDTO.remainingAmount}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.returnedAmount}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.mobileNumber}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.bookingIds}} </td>
+                  <td>{{getadvanceBookingDetailsDTO.createdDate}} </td>
+                  <td>	<button class="btn btn-success" (click) = 'openeditadvancebookingmodal(getadvanceBookingDetailsDTO)' ><strong>EDIT</strong> </button> </td>
               </tr>
            
            
@@ -1823,6 +1830,305 @@
 
                   </div>
                                      
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="advancebookingdeatils" role="dialog" style="
+    overflow: auto;">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto; ">
+              <div class="card cardsize" >
+                 
+                  <div class="card-header card-header-success">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">Advance Booking Details</h4>
+                      <p class="card-category">all field are manitory</p>
+                  </div>
+                  <div class="card-body" style="font-size: initial;">
+                     
+                    
+                          <div class="row">
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Customer Name" type="text"  [(ngModel)]="advancecustomername"    >
+                                </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="checkindate" type="date"    [(ngModel)]="advancecheckindate"   >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="No:Of Persons" type="number"    [(ngModel)]="advancenoofperosons"    >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="No:Of Rooms" type="number"     [(ngModel)]="advancenoofrooms"   >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Advance Amount" type="number"  [(ngModel)]="advanceadavanceamout"     >
+                                  </mat-form-field>
+                                </div>
+                               
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Mobile Number" type="text"   [(ngModel)]="advancemobilenumber"   >
+                                  </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Purpose of vist" type="text"   [(ngModel)]="advancepurposeofvist"    >
+                                  </mat-form-field>
+                                </div>
+                             
+                          
+                                <div class="col-md-4" >
+                                  <div class="dropdown">
+                                    <mat-form-field class="example-full-width">
+                                      <input  matInput placeholder="payment type"  [(ngModel)] =  "advancepaymenttype"    >
+                                    </mat-form-field>
+                                    <div class="dropdown-content">
+                                      <a href="#" (click) = "AdvanceBookingdropdown('CASH')">CASH</a>
+                                      <a href="#" (click) = "AdvanceBookingdropdown('CARD')">CARD</a>
+                                      <a href="#" (click) = "AdvanceBookingdropdown('WALLET')">WALLET</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                          </div>
+      
+                          <button  mat-raised-button type="submit" class="btn btn-danger pull-right" data-dismiss="modal" (click) = "creteaadvanceBooking()"   >
+                              <i *ngIf= "creatAvancebookingspin" class="fa fa-spinner fa-spin"> </i>
+                           Book</button>
+     
+                          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+  
+                          <div class="clearfix"></div>
+                   
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editadvancebookingdeatils" role="dialog" data-backdrop="static" style="
+    overflow: auto;">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8" style="
+          MAX-WIDTH: fit-content;top: 1rem;pointer-events: auto; ">
+              <div class="card cardsize" >
+                 
+                  <div class="card-header card-header-success">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="card-title">Advance Booking Details</h4>
+                      <p class="card-category">all field are manitory</p>
+                  </div>
+                  <div class="card-body" style="font-size: initial;">
+                     
+                    
+                          <div class="row">
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Customer Name" type="text"  [(ngModel)]="editadvancecustomername"  disabled  >
+                                </mat-form-field>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="checkindate" type="text"    [(ngModel)]="editadvancecheckindate"  disabled >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="No:Of Persons" type="number"    [(ngModel)]="editadvancenoofperosons"    >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="No:Of Rooms" type="number"     [(ngModel)]="editadvancenoofrooms"   >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Advance Amount" type="number"  [(ngModel)]="editadvanceadavanceamout"   disabled  >
+                                  </mat-form-field>
+                                </div>
+                               
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Remaing Amount" type="number"  [(ngModel)]="editadvanceremaingamount"     >
+                                  </mat-form-field>
+                                </div>
+                               
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Return Amount" type="number"  [(ngModel)]="editadvancereturnamount"     >
+                                  </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Mobile Number" type="text"   [(ngModel)]="editadvancemobilenumber"   >
+                                  </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Purpose of vist" type="text"   [(ngModel)]="editadvancepurposeofvist"    >
+                                  </mat-form-field>
+                                </div>
+                             
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Booking ids" type="text"   [(ngModel)]="editadvancebookingids"    >
+                                  </mat-form-field>
+                                </div>
+                             
+                                <div class="col-md-4" >
+                                  <div class="dropdown">
+                                    <mat-form-field class="example-full-width">
+                                      <input  matInput placeholder="status"  [(ngModel)] =  "editadvancebookingstatus"    >
+                                    </mat-form-field>
+                                    <div class="dropdown-content">
+                                      <a href="#" (click) = "editAdvanceBookingdropdown('PENDING')">PENDING</a>
+                                      <a href="#" (click) = "editAdvanceBookingdropdown('CHECK_IN')">CHECK_IN</a>
+                                      <a href="#" (click) = "editAdvanceBookingdropdown('SETTLE')">SETTLE</a>
+                                      <a href="#" (click) = "editAdvanceBookingdropdown('WALLET')">CANCEL</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                          </div>
+      
+                          <button  mat-raised-button type="submit" class="btn btn-danger pull-right" data-dismiss="modal" (click) = "editadvancebookingmodalService()"   >
+                              <i *ngIf= "false" class="fa fa-spinner fa-spin"> </i>
+                           Edit</button>
+     
+                          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+  
+                          <div class="clearfix"></div>
+                   
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="advancebookingconfrimationmodal" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 checkouconfrimation" >
+         
+            <div class="card">
+              <h2 class="animate">creating ..</h2>
+              </div>
+
+
+          </div>
+
+
+     
+        
+      </div>
+    </div>
+  
+</div>
+
+<div class="container">
+   
+  <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editadvancebookingconfrimationmodal" role="dialog" data-backdrop="static">
+     
+      <div class="modal-dialog">
+       
+        <!-- Modal content-->
+       
+
+
+          <div class="col-md-8 checkouconfrimation" >
+         
+            <div class="card">
+              <h2 class="animate">editing ..</h2>
               </div>
 
 
